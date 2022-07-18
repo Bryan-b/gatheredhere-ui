@@ -22,7 +22,7 @@ export function TODOCategoriesProvider({
   children,
 }: TODOCategoriesProviderProps) {
   const [categories, setCategories] = useState<TodoCategory[]>(
-    getItem<TodoCategory[]>('categories') || []
+    getItem<TodoCategory[]>('categories') || [...DefaulCategories]
   );
 
   const saveCategories = (cats: TodoCategory[]) => {
@@ -35,7 +35,12 @@ export function TODOCategoriesProvider({
       // TODO: Add logic
       // After making the required updates,
       // call saveCategories on the mutated reference
-      // saveCategories(categories);
+      let newCategories = [
+        ...categories,
+        category
+      ]
+      setCategories(state => ([...state, category]))
+      saveCategories(newCategories);
     },
     [categories]
   );
@@ -46,6 +51,10 @@ export function TODOCategoriesProvider({
       // After making the required updates,
       // call saveCategories on the mutated reference
       // saveCategories(categories);
+      let newCategories = categories.filter(cat => cat.key !== key)
+
+      setCategories(newCategories)
+      saveCategories(newCategories);
     },
     [categories]
   );

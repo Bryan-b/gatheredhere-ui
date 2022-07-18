@@ -28,7 +28,7 @@ export function Card({ title, actions, children, className = '' }: CardProps) {
       {/* Actions */}
       {actions?.length ? (
         <div className="flex items-center justify-end gap-4 mt-5">
-          {actions.map((a, aIdx) => React.cloneElement(a, { key: `ca-${0}` }))}
+          {actions.map((a, aIdx) => React.cloneElement(a, { key: `ca-${aIdx}` }))}
         </div>
       ) : null}
     </div>

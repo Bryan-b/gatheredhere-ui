@@ -4,10 +4,12 @@ import { AddCategory } from './AddCategory';
 import { AddItem } from './AddItem';
 import { DataUtils } from './DataUtils';
 import { Text } from './Text';
+import useCategories from 'hooks/useCategories';
 
 export type StatsProps = { className?: string };
 
 export function Stats({ className }: StatsProps) {
+  let categories = useCategories()
   return (
     <div className={`border-r-px ${className}`}>
       <Text variant={TextVariant.header} className="text-brand-green-soft mb-4">
@@ -21,7 +23,7 @@ export function Stats({ className }: StatsProps) {
           </Text>
           <div className="grid grid-cols-2 grid-rows-1">
             <Text variant={TextVariant.label}>Total</Text>
-            <Text variant={TextVariant.button}>{}</Text>
+            <Text variant={TextVariant.button}>{categories.length}</Text>
           </div>
           <AddCategory className="mt-4" />
         </div>
