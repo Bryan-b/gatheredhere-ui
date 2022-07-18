@@ -39,7 +39,6 @@ export function TODOCategoriesProvider({
         ...categories,
         category
       ]
-      setCategories(state => ([...state, category]))
       saveCategories(newCategories);
     },
     [categories]

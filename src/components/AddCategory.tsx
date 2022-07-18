@@ -22,7 +22,7 @@ export function AddCategory({ className = '' }: AddCategoryProps) {
  
   function submit(){
     if(key === '' || title === ''){
-      console.log(`please all fields are required`)
+      console.log(`All fields are required`)
     }
     // if()
 

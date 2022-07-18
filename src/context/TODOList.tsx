@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useCallback, useState } from 'react';
-import { saveItem } from 'utils/storage';
+import { saveItem, getItem } from 'utils/storage';
 
 export const TODOListContext = createContext<TodoListState>({
   items: [],
@@ -13,7 +13,9 @@ export const TODOListActionsContext = createContext<TodoListActions>({
 
 export type TODOListProviderProps = { children?: ReactNode };
 export function TODOListProvider({ children }: TODOListProviderProps) {
-  const [items, setItems] = useState<TodoListItem[]>([]);
+  const [items, setItems] = useState<TodoListItem[]>(
+    getItem<TodoListItem[]>('items') || []
+  );
 
   /**
    * Saves the mutated array reference as a new reference
@@ -30,6 +32,21 @@ export function TODOListProvider({ children }: TODOListProviderProps) {
       // After making the required updates,
       // call saveItems on the mutated reference
       // saveItems(items);
+      console.log(item)
+      if(!item.category || item.category === ''){
+        let category = getItem<TodoCategory[]>('categories')
+        if(category){
+          item.category = `${category[0].key}`
+        }
+      }
+
+      let newItem = {
+        key: `item-${items.length + 2}`,
+        category: `${item.category}`,
+        description: item.description
+      }
+      console.log(newItem)
+      saveItems([...items, newItem])
     },
     []
   );
