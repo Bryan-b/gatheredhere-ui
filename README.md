@@ -39,6 +39,4 @@ This is a typical React + TailwindCSS project, with a custom theme, and a basic 
 
 - While saving/fetching categories, or items, use the `src/utils/storage.ts` helpers to save/get them from localstorage
 
-### QnA
 
-- For any questions, or clarifications, write to [varshneya@gatheredhere.com.au](mailto:varshneya@gatheredhere.com.au)
